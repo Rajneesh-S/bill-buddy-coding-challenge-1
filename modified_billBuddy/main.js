@@ -155,10 +155,11 @@ function editExpense(user, expense){
                             
                         }
                         let status = readlineSync.question('Status(Settled, Under Review, Unsettled): ');
-                        expense.addPayee({'payeeDetails' : payee.name,
+                        expense.addPayee({'payeeDetails' : payee,
                                           'costToBePaid': individualCost,
                                           'status': status });
-                        payee.addowes(expense);
+                        let payeeObj = users.find(user => user.name === payee);
+                        payeeObj.addowes(expense);
                     }
                 }
                 catch(err){
